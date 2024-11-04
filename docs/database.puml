@@ -1,16 +1,19 @@
 @startuml
-class Users {
+left to right direction
+
+class users {
   +int id
   +Date created_at
   +Date updated_at
   +String username
+  +String email
   +String first_name?
   +String last_name?
   +String bio?
   +String thumbnail_src?
 }
 
-class Games {
+class games {
   +int id
   +Date created_at
   +Date updated_at
@@ -19,19 +22,19 @@ class Games {
   +String thumbnail_src?
 }
 
-class Game_Tags {
+class game_tags {
   +int id
   +int game_id
   +int tag_id
 }
 
-class Tags {
+class tags {
   +int id
   +String name
   +String description
 }
 
-class Reviews {
+class reviews {
   +int id
   +int user_id
   +int game_id
@@ -39,12 +42,12 @@ class Reviews {
   +Date updated_at
 }
 
-class Review_Category {
+class review_categories {
   +int id
   +String name
 }
 
-class Review_Category_Score {
+class review_category_scores {
   +int id
   +int review_category_id
   +int review_id
@@ -52,10 +55,10 @@ class Review_Category_Score {
   +String opinion?
 }
 
-Users "One" -- "Many" Reviews
-Reviews "One" -- "Many" Review_Category_Score
-Review_Category "One" -- "Many" Review_Category_Score
-Games "One"  -- "Many" Reviews
-Games "One" -- "Many" Game_Tags
-Tags "One" -- "Many" Game_Tags
+users "One" -- "Many" reviews
+reviews "One" -- "Many" review_category_scores
+review_categories "One" -- "Many" review_category_scores
+games "One"  -- "Many" reviews
+games "One" -- "Many" game_tags
+tags "One" -- "Many" game_tags
 @enduml
