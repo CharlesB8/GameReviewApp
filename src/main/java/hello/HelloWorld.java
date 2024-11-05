@@ -1,24 +1,11 @@
 package hello;
 
-import java.sql.*;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+@SpringBootApplication
 public class HelloWorld {
-    public static void main(String[] args) throws ClassNotFoundException, SQLException {
-        Class.forName("org.postgresql.Driver");
-
-        String jdbcUrl = "jdbc:postgresql://localhost:5432/postgres";
-
-        Connection connection = DriverManager.getConnection(jdbcUrl);
-        Statement statement = connection.createStatement();
-        ResultSet resultSet = statement.executeQuery("SELECT * FROM games");
-
-        while (resultSet.next()) {
-            String columnValue = resultSet.getString("name");
-            System.out.println(columnValue);
-        }
-
-        resultSet.close();
-        statement.close();
-        connection.close();
+    public static void main(String[] args) {
+        SpringApplication.run(HelloWorld.class, args);
     }
 }
