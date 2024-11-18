@@ -34,9 +34,12 @@ public class Review {
     @JoinColumn(name = "game_id")
     private Game game;
 
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
+
     @OneToMany(mappedBy = "review")
     private List<ReviewCategoryScore> categoryScores = new ArrayList<>();
-
 
     public Integer getId() {
         return id;
