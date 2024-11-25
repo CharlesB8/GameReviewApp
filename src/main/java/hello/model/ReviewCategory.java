@@ -1,10 +1,18 @@
 package hello.model;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
+@Setter
+@Getter
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "review_categories")
 public class ReviewCategory {
@@ -18,22 +26,5 @@ public class ReviewCategory {
     private String name;
 
     @OneToMany(mappedBy = "reviewCategory")
-    private List<ReviewCategory> categoryScores = new ArrayList<>();
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
+    private Set<ReviewCategoryScore> categoryScores = new HashSet<>();
 }

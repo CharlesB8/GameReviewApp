@@ -1,56 +1,54 @@
 package hello.model;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
+@Getter
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "tags")
 public class Tag {
+    @Setter
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "tags_id_gen")
     @SequenceGenerator(name = "tags_id_gen", sequenceName = "tags_id_seq", allocationSize = 1)
     @Column(name = "id", nullable = false)
     private Integer id;
 
-    @Column(name = "name", length = 20)
+    @Setter
+    @Column(name = "name", length = 20, unique = true, nullable = false)
     private String name;
 
+    @Setter
     @Column(name = "description", length = 300)
     private String description;
 
-    @ManyToMany
-    @JoinTable(
-            name = "game_tags",
-            joinColumns = @JoinColumn(name = "tag_id"),
-            inverseJoinColumns = @JoinColumn(name = "game_id")
-    )
-    private List<Game> games = new ArrayList<>();
 
+    @ManyToMany(mappedBy = "tags")
+//    @JoinTable(
+//            name = "game_tags",
+//            joinColumns = @JoinColumn(name = "tag_id"),
+//            inverseJoinColumns = @JoinColumn(name = "game_id")
+//    )
+    private Set<Game> games = new HashSet<>();
 
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
+//    // Ensure bidirectional update of tags and games
+//    public void addGame(Game game) {
+//        this.games.add(game);
+//        game.getTags().add(this);
+//    }
+//
+//    public void removeGame(Game game) {
+//        this.games.remove(game);
+//        game.getTags().remove(this);
+//    }
 }
