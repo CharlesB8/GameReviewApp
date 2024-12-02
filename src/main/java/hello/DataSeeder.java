@@ -19,12 +19,14 @@ public class DataSeeder {
             GameRepository gameRepository,
             TagRepository tagRepository,
             ReviewRepository reviewRepository,
-            ReviewCategoryRepository reviewCategoryRepository
-    ) {
+            ReviewCategoryRepository reviewCategoryRepository,
+            ReviewCategoryScoreRepository reviewCategoryScoreRepository) {
         return args -> {
             userRepository.deleteAll();
             gameRepository.deleteAll();
             tagRepository.deleteAll();
+            reviewCategoryRepository.deleteAll();
+            reviewRepository.deleteAll();
 
             // Seed users
             User johnDoe = new User(null, Instant.now(), Instant.now(), "john_doe", "john.doe@example.com", "John", "Doe", "Gamer and reviewer", "profile1.jpg", new HashSet<>());
@@ -55,14 +57,15 @@ public class DataSeeder {
 
 
             // Seed reviews
-            Review review1 = new Review(null, Instant.now(), Instant.now(), johnDoe, eldenRing.getId(), null, null, null);
-            Review review2 = new Review(null, Instant.now(), Instant.now(), janeDoe.getId(), mario.getId(),  null, null, null);
+            Review review1 = new Review(null, Instant.now(), Instant.now(), johnDoe, eldenRing, new HashSet<>());
+            Review review2 = new Review(null, Instant.now(), Instant.now(), janeDoe, mario, new HashSet<>());
             reviewRepository.saveAll(Arrays.asList(review1, review2));
 
             // Add review category scores
-            ReviewCategoryScore score1 = new ReviewCategoryScore(null, story.getId(), review1.getId(), 9.5f, "Excellent story!", null, null);
-            ReviewCategoryScore score2 = new ReviewCategoryScore(null, gameplay.getId(), review1.getId(), 8.0f, "Challenging gameplay.", null, null);
-            ReviewCategoryScore score3 = new ReviewCategoryScore(null, story.getId(), review2.getId(), 10.0f, "A masterpiece.", null, null);
+            ReviewCategoryScore score1 = new ReviewCategoryScore(null, 9.5f, "Excellent story!", review1, story);
+            ReviewCategoryScore score2 = new ReviewCategoryScore(null,  8.0f, "Challenging gameplay.", review1, gameplay);
+            ReviewCategoryScore score3 = new ReviewCategoryScore(null, 10.0f, "A masterpiece.", review2, story );
+            reviewCategoryScoreRepository.saveAll(Arrays.asList(score1, score2, score3));
 
             // Add scores to reviews
             review1.getCategoryScores().addAll(Arrays.asList(score1, score2));

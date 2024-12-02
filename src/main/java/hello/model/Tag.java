@@ -34,21 +34,5 @@ public class Tag {
 
 
     @ManyToMany(mappedBy = "tags")
-//    @JoinTable(
-//            name = "game_tags",
-//            joinColumns = @JoinColumn(name = "tag_id"),
-//            inverseJoinColumns = @JoinColumn(name = "game_id")
-//    )
     private Set<Game> games = new HashSet<>();
-
-//    // Ensure bidirectional update of tags and games
-//    public void addGame(Game game) {
-//        this.games.add(game);
-//        game.getTags().add(this);
-//    }
-//
-//    public void removeGame(Game game) {
-//        this.games.remove(game);
-//        game.getTags().remove(this);
-//    }
 }

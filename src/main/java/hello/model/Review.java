@@ -9,7 +9,9 @@ import org.hibernate.annotations.ColumnDefault;
 
 import java.time.Instant;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -37,24 +39,16 @@ public class Review {
     private Instant updatedAt;
 
     @Setter
-    @Getter
-    @Column(name = "user_id", nullable = false, updatable = false, insertable = false)
-    private Integer userId;
-
-    @Setter
-    @Getter
-    @Column(name = "game_id", nullable = false, updatable = false, insertable = false)
-    private Integer gameId;
-
-    @ManyToOne
-    @JoinColumn(name = "game_id")
-    private Game game;
-
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
 
+    @Setter
+    @ManyToOne
+    @JoinColumn(name = "game_id")
+    private Game game;
+
     @Getter
     @OneToMany(mappedBy = "review")
-    private List<ReviewCategoryScore> categoryScores = new ArrayList<>();
+    private Set<ReviewCategoryScore> categoryScores = new HashSet<>();
 }

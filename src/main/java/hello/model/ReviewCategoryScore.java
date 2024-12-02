@@ -21,16 +21,6 @@ public class ReviewCategoryScore {
 
     @Setter
     @Getter
-    @Column(name = "review_category_id", nullable = false, updatable = false, insertable = false)
-    private Integer reviewCategoryId;
-
-    @Setter
-    @Getter
-    @Column(name = "review_id", nullable = false, updatable = false, insertable = false)
-    private Integer reviewId;
-
-    @Setter
-    @Getter
     @Column(name = "score", nullable = false)
     private Float score;
 
