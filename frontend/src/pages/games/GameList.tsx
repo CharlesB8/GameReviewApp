@@ -1,17 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import api from '../api';
+import api from '../../api';
 
 interface Game {
     id: number;
     title: string;
     description: string;
-    // reviews: Array<Review>
 }
-
-// interface Review {
-//     id: number;
-//     scores: Array<number>;
-// }
 
 function GameList() {
     const [games, setGames] = useState<Game[]>([]);
