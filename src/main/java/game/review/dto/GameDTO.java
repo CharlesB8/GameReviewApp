@@ -1,12 +1,17 @@
 package game.review.dto;
 
+import lombok.Getter;
+import org.springframework.lang.Nullable;
+
 import java.util.Set;
 
-public record GameDTO(
-        Integer id,
-        String title,
-        String description,
-        String thumbnailSrc,
-        Set<TagDTO> tags,
-        Set<ReviewDTO> reviews
-) {}
+@Getter
+public class GameDTO {
+    private Integer id;
+    private String title;
+    private String description;
+    @Nullable
+    private String thumbnailSrc;
+    private Set<TagDTO> tags;
+    private Set<ReviewDTO> review;
+}

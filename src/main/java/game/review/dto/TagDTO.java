@@ -6,8 +6,8 @@ import java.util.Set;
 
 @Getter
 public class TagDTO {
+    private int id;
     private String name;
     private String description;
     private Set<GameDTO> games;
-    private Set<TagDTO> tags;
 }
