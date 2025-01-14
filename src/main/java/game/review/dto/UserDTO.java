@@ -16,3 +16,8 @@ public class UserDTO {
     @Nullable
     private String thumbnailSrc;
 }
+
+//@Getter
+//public class UserWithGamesDTO {
+//
+//}

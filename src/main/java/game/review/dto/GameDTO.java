@@ -13,5 +13,5 @@ public class GameDTO {
     @Nullable
     private String thumbnailSrc;
     private Set<TagDTO> tags;
-    private Set<ReviewDTO> review;
+    private Set<ReviewDTO> reviews;
 }
