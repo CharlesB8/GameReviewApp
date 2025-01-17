@@ -12,7 +12,7 @@ public class OpenAPIExampleResponses {
                 "first_name": "Donkey",
                 "last_name": "Kong",
                 "bio": "I love games with monkeys",
-                "thumbnail_src": "some/url/somewhere
+                "thumbnail_src": "some/url/somewhere"
             }
             """;
 
@@ -37,7 +37,7 @@ public class OpenAPIExampleResponses {
                         "id": "1",
                         "name": "Platforming",
                         "description": "Game play focused on jumping from one platform to another"
-                    }
+                    },
                     {
                         "id": "2",
                         "name": "Action",
