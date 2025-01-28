@@ -62,6 +62,7 @@ public class GameController {
         return ResponseEntity.ok(new GameDTO());
     }
 
+//    Refactor to use url parameter
     @ApiResponses(
             value = {
                     @ApiResponse(
@@ -108,7 +109,7 @@ public class GameController {
                             })
             })
     @PutMapping("/{gameId}")
-    @Operation(summary = "Update Game", description = "Update the given game")
+    @Operation(summary = "Get games reviewed by user", description = "Get all games reviewed by a user")
     public ResponseEntity<GameDTO> update(@Parameter(description = "Game ID") @PathVariable String gameId) {
         return ResponseEntity.ok(new GameDTO());
     }

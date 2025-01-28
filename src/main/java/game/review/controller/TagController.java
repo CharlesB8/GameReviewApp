@@ -1,6 +1,6 @@
 package game.review.controller;
 
-import game.review.dto.UserDTO;
+import game.review.dto.TagDTO;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -9,15 +9,18 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-import static game.review.controller.OpenAPIExampleResponses.GET_USER_DUMMY_RESPONSE;
-import static game.review.controller.OpenAPIExampleResponses.UPDATE_USER_DUMMY_RESPONSE;
+import static game.review.controller.OpenAPIExampleResponses.REVIEW_DUMMY_RESPONSE;
+import static game.review.controller.OpenAPIExampleResponses.TAG_DUMMY_RESPONSE;
 
-@Tag(name = "User Controller", description="Endpoints for user")
+@Tag(name = "Tag Controller", description="Endpoints Tag")
 @RestController
-@RequestMapping("/api/users")
-public class UserController {
+@RequestMapping("/api/tags")
+public class TagController {
 
     @ApiResponses(
             value = {
@@ -27,13 +30,13 @@ public class UserController {
                             content = {
                                     @Content(
                                             mediaType = "application/json",
-                                            examples = {@ExampleObject(value = GET_USER_DUMMY_RESPONSE)})
+                                            examples = {@ExampleObject(value = TAG_DUMMY_RESPONSE)})
                             })
             })
-    @GetMapping("/{userId}")
-    @Operation(summary = "Get User", description = "Get a specific user")
-    public ResponseEntity<UserDTO> get(@Parameter(description = "User Id") @PathVariable String userId) {
-        return ResponseEntity.ok(new UserDTO());
+    @Operation(summary = "Get all tags")
+    @GetMapping("")
+    public ResponseEntity<TagDTO> list() {
+        return ResponseEntity.ok(new TagDTO());
     }
 
     @ApiResponses(
@@ -44,12 +47,13 @@ public class UserController {
                             content = {
                                     @Content(
                                             mediaType = "application/json",
-                                            examples = {@ExampleObject(value = UPDATE_USER_DUMMY_RESPONSE)})
+                                            examples = {@ExampleObject(value = TAG_DUMMY_RESPONSE)})
                             })
             })
-    @PutMapping("/{userId}")
-    @Operation(summary = "Update User", description = "Update a specific user")
-    public ResponseEntity<UserDTO> update(@Parameter(description = "User Id") @PathVariable String userId, UserDTO userDTO) {
-        return ResponseEntity.ok(new UserDTO());
+    @Operation(summary = "Create tag")
+    @GetMapping("/new")
+    public ResponseEntity<TagDTO> create(String name, String description) {
+       return ResponseEntity.ok(new TagDTO());
     }
+
 }

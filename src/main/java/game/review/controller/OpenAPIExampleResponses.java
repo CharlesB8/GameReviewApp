@@ -111,4 +111,35 @@ public class OpenAPIExampleResponses {
                 }
             ]
             """;
+
+    public static final String REVIEW_DUMMY_RESPONSE =
+            """
+            {
+                "id": "5",
+                "user": "Tom",
+                "opinion": "Terrible game",
+                "categoryScores": [
+                    {
+                        "categoryName": "Game Play",
+                        "categoryScore": "7"
+                    },
+                    {
+                        "categoryName": "Art Direction",
+                        "categoryScore": "10"
+                    },
+                    {
+                        "categoryName": "Story",
+                        "categoryScore": "10"
+                    }
+                 ]
+            }
+            """;
+
+    public static final String TAG_DUMMY_RESPONSE =
+            """
+            {
+                "name": "Party",
+                "description": "Games best played with a group"
+            }
+            """;
 }
