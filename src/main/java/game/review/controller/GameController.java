@@ -41,8 +41,11 @@ public class GameController {
                                             examples = {@ExampleObject(value = LIST_GAMES_DUMMY_RESPONSE)})
                             })
             })
-    public List<Game> list() {
-        return gameRepository.findAll();
+    public ResponseEntity<List<GameDTO>> list() {
+        List<Game> games = gameRepository.findAll();
+        List<GameDTO> gameDTOS = games.stream().map(GameDTO::fromEntity).toList();
+
+        return ResponseEntity.ok(gameDTOS);
     }
 
     @ApiResponses(

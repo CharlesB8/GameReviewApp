@@ -8,7 +8,9 @@ import lombok.Setter;
 import org.hibernate.annotations.ColumnDefault;
 
 import java.time.Instant;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @NoArgsConstructor
@@ -37,16 +39,18 @@ public class Review {
     private Instant updatedAt;
 
     @Setter
+    @Getter
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
 
     @Setter
+    @Getter
     @ManyToOne
     @JoinColumn(name = "game_id")
     private Game game;
 
     @Getter
     @OneToMany(mappedBy = "review")
-    private Set<ReviewCategoryScore> categoryScores = new HashSet<>();
+    private List<ReviewCategoryScore> categoryScores = new ArrayList<>();
 }

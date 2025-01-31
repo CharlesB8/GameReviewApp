@@ -57,8 +57,8 @@ public class DataSeeder {
 
 
             // Seed reviews
-            Review review1 = new Review(null, Instant.now(), Instant.now(), johnDoe, eldenRing, new HashSet<>());
-            Review review2 = new Review(null, Instant.now(), Instant.now(), janeDoe, mario, new HashSet<>());
+            Review review1 = new Review(null, Instant.now(), Instant.now(), johnDoe, eldenRing, new ArrayList<>());
+            Review review2 = new Review(null, Instant.now(), Instant.now(), janeDoe, mario, new ArrayList<>());
             reviewRepository.saveAll(Arrays.asList(review1, review2));
 
             // Add review category scores
