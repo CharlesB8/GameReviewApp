@@ -5,7 +5,7 @@ export interface Game {
     id: number;
     title: string;
     description: string;
-    thumbnail_src: string | null;
+    thumbnailSrc: string;
     tags: Tag[];
     reviews: Review[];
 }

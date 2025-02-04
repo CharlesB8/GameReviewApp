@@ -22,6 +22,7 @@ function GameList() {
             <Header title="Game List" />
             {games.map(game => (
                 <div key={game.id}>
+                    <img alt="Game thumbnail" src={game.thumbnailSrc}/>
                     <h2>{game.title} - {game.description}</h2>
                 </div>
             ))}
