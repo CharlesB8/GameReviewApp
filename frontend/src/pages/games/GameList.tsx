@@ -19,7 +19,6 @@ function GameList() {
 
     return (
         <div>
-            <Header title="Game List" />
             <div className="flex flex-col items-center justify-center gap-y-6 top-5">
                 {games.map(game => (
                     <div key={game.id} className="flex items-center justify-center gap-4 gap-y-10">
