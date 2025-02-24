@@ -40,8 +40,8 @@ public class DataSeeder {
 
 
             // Seed games
-            Game eldenRing = new Game(null, Instant.now(), Instant.now(), "Elden Ring", "An action RPG game", "frontend/public/elden-ring.jpeg", new HashSet<>(), new HashSet<>());
-            Game mario = new Game(null, Instant.now(), Instant.now(), "Mario", "Platforming fun for all ages", "frontend/public/mario.webp", new HashSet<>(), new HashSet<>());
+            Game eldenRing = new Game(null, Instant.now(), Instant.now(), "Elden Ring", "An action RPG game", "/elden-ring.jpeg", new HashSet<>(), new HashSet<>());
+            Game mario = new Game(null, Instant.now(), Instant.now(), "Mario", "Platforming fun for all ages", "/mario.webp", new HashSet<>(), new HashSet<>());
 
 
             eldenRing.addTag(action);
