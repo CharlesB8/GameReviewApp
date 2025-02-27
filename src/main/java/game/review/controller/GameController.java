@@ -1,8 +1,11 @@
 package game.review.controller;
 
+import com.fasterxml.jackson.databind.JsonNode;
 import game.review.dto.GameDTO;
+import game.review.dto.NewGameRequest;
 import game.review.model.Game;
 import game.review.repository.GameRepository;
+import game.review.service.GameService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -10,6 +13,7 @@ import io.swagger.v3.oas.annotations.media.ExampleObject;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,12 +25,11 @@ import static game.review.controller.OpenAPIExampleResponses.*;
 @Tag(name = "Game Controller", description="Endpoints for games")
 @RestController
 @RequestMapping("/api/games")
+@AllArgsConstructor
 public class GameController {
     private final GameRepository gameRepository;
+    private final GameService gameService;
 
-    public GameController(GameRepository gameRepository) {
-        this.gameRepository = gameRepository;
-    }
 
     @GetMapping("")
     @Operation(summary = "Get All Games", description = "Get all games including name and genre")
@@ -115,5 +118,23 @@ public class GameController {
     @Operation(summary = "Get games reviewed by user", description = "Get all games reviewed by a user")
     public ResponseEntity<GameDTO> update(@Parameter(description = "Game ID") @PathVariable String gameId) {
         return ResponseEntity.ok(new GameDTO());
+    }
+
+    @ApiResponses(
+            value = {
+                    @ApiResponse(
+                            responseCode = "200",
+                            description = "Successful operation",
+                            content = {
+                                    @Content(
+                                            mediaType = "application/json",
+                                            examples = {@ExampleObject(value = GAME_DUMMY_RESPONSE)})
+                            })
+            })
+    @PostMapping("/new")
+    @Operation(summary = "Get games reviewed by user", description = "Get all games reviewed by a user")
+    public ResponseEntity<GameDTO> create(@RequestBody NewGameRequest body) {
+
+        return ResponseEntity.ok(gameService.createGame(body));
     }
 }

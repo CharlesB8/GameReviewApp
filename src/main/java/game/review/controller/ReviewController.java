@@ -39,7 +39,7 @@ public class ReviewController {
     @PostMapping("/{game_id}/{user_id}/new")
     public ResponseEntity<ReviewDTO> create(
             @Parameter(description = "game id") @PathVariable Long game_id,
-            @Parameter(description = "user id")@PathVariable Long user_id
+            @Parameter(description = "user id") @PathVariable Long user_id
     ) {
         return ResponseEntity.ok(new ReviewDTO());
     }

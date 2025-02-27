@@ -1,5 +1,6 @@
 package game.review.dto;
 
+import com.fasterxml.jackson.databind.JsonNode;
 import game.review.model.Game;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -23,14 +24,18 @@ public class GameDTO {
     private List<TagDTO> tags;
     private List<ReviewDTO> reviews;
 
+//    public GameDTO(JsonNode postBody) {
+//        return GameDTO.new(postBody)
+//    }
+//
     public static GameDTO fromEntity(Game game) {
         return GameDTO.builder()
                 .id(game.getId())
                 .title(game.getTitle())
                 .description(game.getDescription())
                 .thumbnailSrc(game.getThumbnailSrc())
-                .tags(game.getTags().stream().map(TagDTO::fromEntity).toList())
-                .reviews(game.getReviews().stream().map(ReviewDTO::fromEntity).toList())
+//                .tags(game.getTags().stream().map(TagDTO::fromEntity).toList())
+//                .reviews(game.getReviews().stream().map(ReviewDTO::fromEntity).toList())
                 .build();
     }
 }

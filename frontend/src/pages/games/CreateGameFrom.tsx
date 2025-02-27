@@ -2,6 +2,8 @@ import LabeledInput from "../components/Forms/LabeledInput";
 import Button from "../components/Forms/Button";
 import {useFormik} from "formik";
 import * as Yup from 'yup';
+import axios from "axios";
+import api from "../../api";
 
 const validationSchema = Yup.object({
     title: Yup.string()
@@ -23,8 +25,16 @@ function CreateGameForm() {
             logoUrl: '',
         },
         validationSchema,
-        onSubmit: values => {
-            alert(JSON.stringify(values, null, 2));
+        onSubmit: async (values) => {
+            api.post('/games/new', values)
+                .then(response => {
+                    console.log("Success", response.data);
+                })
+                .catch(error => {
+                    console.error("Something went wrong creating game", error);
+                });
+            formik.resetForm();
+            alert("Successfully created!");
         },
     });
 
