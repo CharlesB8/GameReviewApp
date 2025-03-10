@@ -1,23 +1,22 @@
 package game.review.model;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import lombok.*;
-import org.hibernate.annotations.ColumnDefault;
 
 import java.time.Instant;
 import java.util.HashSet;
 import java.util.Set;
 
 @Getter
-@Entity
+@Setter
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
+@Entity
 @Table(name = "games")
 public class Game {
-    @Setter
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "games_id_gen")
     @SequenceGenerator(name = "games_id_gen", sequenceName = "games_id_seq", allocationSize = 1)
@@ -25,26 +24,19 @@ public class Game {
     private Integer id;
 
 
-    @Setter
-    @ColumnDefault("CURRENT_TIMESTAMP")
-    @Column(name = "created_at")
+    @NotNull
     private Instant createdAt;
 
-    @Setter
-    @ColumnDefault("CURRENT_TIMESTAMP")
-    @Column(name = "updated_at")
+    @NotNull
     private Instant updatedAt;
 
-    @Setter
-    @Column(name = "title", nullable = false, length = 50)
+    @NotNull
     private String title;
 
-    @Setter
-    @Column(name = "description", nullable = false, length = 300)
+    @NotNull
     private String description;
 
-    @Setter
-    @Column(name = "thumbnail_src", length = 1000)
+    @NotNull
     private String thumbnailSrc;
 
     @ManyToMany

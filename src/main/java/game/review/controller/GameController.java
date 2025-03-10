@@ -1,6 +1,5 @@
 package game.review.controller;
 
-import com.fasterxml.jackson.databind.JsonNode;
 import game.review.dto.GameDTO;
 import game.review.dto.NewGameRequest;
 import game.review.model.Game;
@@ -15,6 +14,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -131,10 +131,11 @@ public class GameController {
                                             examples = {@ExampleObject(value = GAME_DUMMY_RESPONSE)})
                             })
             })
-    @PostMapping("/new")
-    @Operation(summary = "Get games reviewed by user", description = "Get all games reviewed by a user")
-    public ResponseEntity<GameDTO> create(@RequestBody NewGameRequest body) {
+    @PostMapping(value = "/new", consumes = "application/json")
+    @Operation(summary = "Create a Game")
+    public ResponseEntity<GameDTO> create(@Validated @RequestBody NewGameRequest body) {
+        Game game = gameService.createGame(body);
 
-        return ResponseEntity.ok(gameService.createGame(body));
+        return ResponseEntity.ok(GameDTO.fromEntity(game));
     }
 }

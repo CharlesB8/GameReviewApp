@@ -2,14 +2,16 @@ import LabeledInput from "../components/Forms/LabeledInput";
 import Button from "../components/Forms/Button";
 import {useFormik} from "formik";
 import * as Yup from 'yup';
-import axios from "axios";
 import api from "../../api";
+import {useNavigate} from "react-router-dom";
 
 const validationSchema = Yup.object({
     title: Yup.string()
+        .min(1)
         .max(12, "Max of 12")
         .required('Title is required'),
     description: Yup.string()
+        .min(1)
         .required('Description is required'),
     logoUrl: Yup.string()
         .url("Must be valid url")
@@ -17,6 +19,8 @@ const validationSchema = Yup.object({
 });
 
 function CreateGameForm() {
+
+    const navigate = useNavigate();
 
     const formik = useFormik({
         initialValues: {
@@ -28,13 +32,14 @@ function CreateGameForm() {
         onSubmit: async (values) => {
             api.post('/games/new', values)
                 .then(response => {
+                    alert("Game Created!")
                     console.log("Success", response.data);
                 })
                 .catch(error => {
+                    alert("Something went wrong!")
                     console.error("Something went wrong creating game", error);
                 });
             formik.resetForm();
-            alert("Successfully created!");
         },
     });
 
