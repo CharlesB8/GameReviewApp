@@ -6,6 +6,6 @@ export interface Game {
     title: string;
     description: string;
     thumbnailSrc: string;
-    tags: Tag[];
-    reviews: Review[];
+    // tags: Tag[];
+    // reviews: Review[];
 }

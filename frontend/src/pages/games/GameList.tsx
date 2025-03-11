@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import api from '../../api';
 import {Game} from "../../models/Game";
-import Header from "../components/Header";
 import '../../index.css'
+import {Link} from "react-router-dom";
 
 function GameList() {
     const [games, setGames] = useState<Game[]>([]);
@@ -31,8 +31,18 @@ function GameList() {
                                 <div>{game.description}</div>
                             </div>
                         </div>
+                        <div className="text-right" >
+                            <button className="bg-orange-500 hover:bg-orange-700 text-black font-bold py-2 px-4 rounded">
+                                <Link to={`/games/${game.id}`}>Game Page</Link>
+                            </button>
+                        </div>
                     </div>
                 ))}
+                <div >
+                    <button className="bg-orange-500 hover:bg-orange-700 text-black font-bold py-2 px-4 rounded">
+                        <Link to={`/games/new`}>Add Game</Link>
+                    </button>
+                </div>
             </div>
         </div>
     );

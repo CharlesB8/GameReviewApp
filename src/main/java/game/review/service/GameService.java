@@ -7,11 +7,16 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.time.Instant;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
 public class GameService {
     private final GameRepository gameRepository;
+
+    public Optional<Game> findById(String gameId) {
+        return gameRepository.findById(Integer.valueOf(gameId));
+    }
 
     public Game createGame(NewGameRequest postBody) {
         return gameRepository.save(Game.builder()

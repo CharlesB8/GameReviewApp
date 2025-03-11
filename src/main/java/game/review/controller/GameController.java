@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import static game.review.controller.OpenAPIExampleResponses.*;
 
@@ -65,7 +66,10 @@ public class GameController {
     @GetMapping("/{gameId}")
     @Operation(summary = "Get game", description = "Get game by game id")
     public ResponseEntity<GameDTO> get(@Parameter(description = "Game Id") @PathVariable String gameId) {
-        return ResponseEntity.ok(new GameDTO());
+        return gameService
+                .findById(gameId)
+                .map(game -> ResponseEntity.ok(GameDTO.fromEntity(game)))
+                .orElse(ResponseEntity.notFound().build());
     }
 
 //    Refactor to use url parameter

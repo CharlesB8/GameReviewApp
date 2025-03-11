@@ -8,6 +8,7 @@ interface HeaderProps {
 const Header: React.FC<HeaderProps> = ({ title }) => {
     const links = [
         { name: 'Profile', path: '/profile' },
+        { name: 'All Games', path: '/games' }
     ];
 
     return (
